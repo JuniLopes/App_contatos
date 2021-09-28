@@ -86,4 +86,10 @@ class _$BancoDeDados extends BancoDeDados {
     );
     return sqfliteDatabaseFactory.openDatabase(path, options: databaseOptions);
   }
+
+  @override
+  // ignore: todo
+  // TODO: implement campoBaseRepositoryDAO
+  CampoBaseRepositoryDAO get campoBaseRepositoryDAO =>
+      throw UnimplementedError();
 }
