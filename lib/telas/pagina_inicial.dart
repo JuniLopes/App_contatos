@@ -1,10 +1,8 @@
-import 'package:app_contatos/database/database.dart';
-import 'package:app_contatos/telas/add_contatos.dart';
+import 'package:app_contatos/telas/pagina_tarefas.dart';
 import 'package:flutter/material.dart';
 
 class PaginaInicial extends StatefulWidget {
-  const PaginaInicial({Key? key, required this.bd}) : super(key: key);
-  final BancoDeDados bd;
+  const PaginaInicial({Key? key}) : super(key: key);
 
   @override
   State<PaginaInicial> createState() => _PaginaInicialState();
@@ -24,12 +22,7 @@ class _PaginaInicialState extends State<PaginaInicial> {
             context,
             MaterialPageRoute(
               builder: (context) {
-                return AddContatos(
-                  bd: widget.bd,
-                  endereco: '',
-                  nome: '',
-                  telefone: '',
-                );
+                return const PaginaTarefas();
               },
             ),
           );
