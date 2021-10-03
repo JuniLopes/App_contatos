@@ -1,11 +1,14 @@
+import 'package:app_contatos/database/database.dart';
+import 'package:app_contatos/model/atividade.dart';
 import 'package:app_contatos/telas/pagina_tarefas.dart';
 import 'package:flutter/material.dart';
 
 class PaginaInicial extends StatefulWidget {
-  const PaginaInicial({Key? key}) : super(key: key);
+  const PaginaInicial({Key? key, required this.bd}) : super(key: key);
+  final BancoDeDadosApp bd;
 
   @override
-  State<PaginaInicial> createState() => _PaginaInicialState();
+  _PaginaInicialState createState() => _PaginaInicialState();
 }
 
 class _PaginaInicialState extends State<PaginaInicial> {
@@ -17,19 +20,42 @@ class _PaginaInicialState extends State<PaginaInicial> {
         title: const Text("Meus contatos"),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
+        onPressed: () async {
+          var resultado = await Navigator.push(
             context,
             MaterialPageRoute(
               builder: (context) {
-                return const PaginaTarefas();
+                return PaginaTarefas(bd: widget.bd);
               },
             ),
           );
+          if (resultado) {
+            setState(() {});
+          }
         },
         child: const Icon(Icons.add),
       ),
-      body: const Center(),
+      body: FutureBuilder<List<Atividade>>(
+          future: widget.bd.atividadeRepositoryDAO.getAll(),
+          builder: (context, snapshot) {
+            return snapshot.hasData
+                ? ListView.builder(
+                    itemCount: snapshot.data!.length,
+                    itemBuilder: (context, index) {
+                      return Card(
+                        child: ListTile(
+                          title: Text(snapshot.data![index].nome),
+                          subtitle: Text(snapshot.data![index].endereco),
+
+                          ///title: Text(snapshot.data![index].telefone),
+                        ),
+                      );
+                    },
+                  )
+                : const Center(
+                    child: Text("Sem dados cadastrados"),
+                  );
+          }),
       drawer: Drawer(
           child: ListView(
         padding: EdgeInsets.zero,
@@ -40,8 +66,10 @@ class _PaginaInicialState extends State<PaginaInicial> {
             ),
             child: Text(
               'App criado por: ',
-              style:
-                  TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 50),
             ),
           ),
           ListTile(
