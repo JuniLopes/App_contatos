@@ -1,6 +1,7 @@
-import 'package:app_contatos/model/atividade.dart';
-import 'package:app_contatos/repository/irepository.dart';
 import 'package:floor/floor.dart';
+import 'package:tarefas_banco/model/atividade.dart';
+
+import 'irepository.dart';
 
 @dao
 abstract class AtividadeRepositoryDAO extends IRepositoryDAO<Atividade> {

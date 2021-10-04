@@ -88,6 +88,7 @@ class _$BancoDeDadosApp extends BancoDeDadosApp {
   }
 
   @override
+  // ignore: todo
   // TODO: implement atividadeRepositoryDAO
   AtividadeRepositoryDAO get atividadeRepositoryDAO =>
       throw UnimplementedError();

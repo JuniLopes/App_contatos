@@ -26,6 +26,7 @@ class PaginaTarefas extends StatelessWidget {
                 nome: _nomeController.text,
                 endereco: _enderecoController.text,
                 telefone: _telefoneController.text,
+                //telefone: _telefoneController.text,
                 quandoFoiCriado: DateTime.now().toUtc().toString(),
               ));
             }

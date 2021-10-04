@@ -1,7 +1,10 @@
-import 'package:app_contatos/model/entidade_base.dart';
-import 'package:floor/floor.dart';
 
-abstract class IRepositoryDAO<Model extends EntidadeBase> {
+
+import 'package:floor/floor.dart';
+import 'package:tarefas_banco/model/entidade_base.dart';
+
+abstract class IRepositoryDAO<Model extends EntidadeBase>{
+
   @insert
   Future<int> insertItem(Model item);
 
@@ -10,4 +13,5 @@ abstract class IRepositoryDAO<Model extends EntidadeBase> {
 
   @delete
   Future<int> deleteItem(Model item);
+
 }

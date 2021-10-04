@@ -1,12 +1,12 @@
-import 'package:app_contatos/database/database.dart';
-import 'package:app_contatos/telas/pagina_inicial.dart';
 import 'package:flutter/material.dart';
+import 'package:tarefas_banco/database/database.dart';
+import 'package:tarefas_banco/screens/pagina_inicial.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(MyApp(
     bd: await $FloorBancoDeDadosApp
-        .databaseBuilder('app_database_at.bd')
+        .databaseBuilder('app_database_at.db')
         .build(),
   ));
 }
@@ -14,10 +14,12 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key, required this.bd}) : super(key: key);
   final BancoDeDadosApp bd;
+
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'App Contatos',
+      title: '',
       home: PaginaInicial(bd: bd),
     );
   }
